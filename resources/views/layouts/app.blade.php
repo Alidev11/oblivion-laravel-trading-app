@@ -75,7 +75,7 @@
                 @include('dashboard.header')
                 <!--  Header End -->
                 <div class="container-fluid" id="main-content">
-
+                    
                     @yield('content')
                 </div>
             </div>

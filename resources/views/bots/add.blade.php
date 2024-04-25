@@ -1,11 +1,6 @@
 <div class="modal fade" id="add-bot" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content bg-light">
-            {{-- <div class="modal-header">
-                <div class="modal-title" id="exampleModalLabel">bot </div>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div> --}}
-            {{-- <hr> --}}
             <div class="modal-body">
                 <form action="javascript:void(0)" method="POST" id="bot-add-form">
                     @csrf

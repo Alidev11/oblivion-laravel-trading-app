@@ -44,12 +44,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('mybots', [BotsController::class, 'store'])->name('mybots.store');
     Route::put('mybots/{id}/edit', [BotsController::class, 'update'])->name('mybots.update');
     Route::get('mybots/{id}/edit', [BotsController::class, 'edit'])->name('mybots.edit');
-    Route::delete('mybots/{id}', [BotsController::class, 'destroy'])->name('mybots.destroy');
+    Route::post('mybots/{id}', [BotsController::class, 'destroy'])->name('mybots.destroy');
 
     Route::get('mysettings', [SettingController::class, 'index'])->name('mysettings.index');
     Route::post('mysettings', [SettingController::class, 'store'])->name('mysettings.store');
-    Route::delete('mysettings/{id}', [SettingController::class, 'destroy'])->name('mysettings.destroy');
+    Route::post('mysettings/{id}', [SettingController::class, 'destroy'])->name('mysettings.destroy');
     Route::get('mysettings/{id}', [SettingController::class, 'show'])->name('mysettings.show');
+    Route::put('mysettings/{id}/edit', [SettingController::class, 'update'])->name('mysettings.update');
 
 });
 
