@@ -11,6 +11,7 @@
     <link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.png') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
     <script src="https://kit.fontawesome.com/6d5b5d6689.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -75,7 +76,7 @@
                 @include('dashboard.header')
                 <!--  Header End -->
                 <div class="container-fluid" id="main-content">
-                    
+
                     @yield('content')
                 </div>
             </div>

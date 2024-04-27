@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BotsController;
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\DatabaseController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('mysettings/{id}', [SettingController::class, 'destroy'])->name('mysettings.destroy');
     Route::get('mysettings/{id}', [SettingController::class, 'show'])->name('mysettings.show');
     Route::put('mysettings/{id}/edit', [SettingController::class, 'update'])->name('mysettings.update');
+
+    Route::get('chart-data', [ChartController::class, 'getChartData'])->name('chartData.index');
 
 });
 

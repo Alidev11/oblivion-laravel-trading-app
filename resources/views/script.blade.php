@@ -404,54 +404,44 @@
     });
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Extracting data from JSON
-        const data = [
-            {
-                "mi_libelle_market": "ETH/EUR",
-                "mi_top_balance": 87
-            },
-            {
-                "mi_libelle_market": "SOL-USDT",
-                "mi_top_balance": 1221.479
-            },
-            {
-                "mi_libelle_market": "BTC/EUR",
-                "mi_top_balance": 52
-            },
-            {
-                "mi_libelle_market": "ETH/USD",
-                "mi_top_balance": 81
-            }
-        ];
+    window.onload = function() {
+        fetch('/chart-data')
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                const chartData = data.map(item => ({
+                    x: new Date(item.act_date),
+                    y: parseFloat(item.act_ccy_receiv)
+                }));
 
-        // Extracting labels and data
-        const labels = data.map(entry => entry.mi_libelle_market);
-        const balances = data.map(entry => entry.mi_top_balance);
+                var options = {
+                    chart: {
+                        type: 'area',
+                        height: 350,
 
-        // Chart.js configuration
-        const ctx = document.getElementById('balanceChart').getContext('2d');
-        const balanceChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Top Balance',
-                    data: balances,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    });
+                    },
+
+                    dataLabels: {
+                        enabled: false
+                    },
+                    series: [{
+                        name: 'Currency Received',
+                        data: chartData
+                    }],
+                    xaxis: {
+                        type: 'datetime'
+                    },
+                    title: {
+                        text: '',
+                        align: 'left'
+                    },
+                };
+
+                var chart = new ApexCharts(document.querySelector("#chartCurrency"), options);
+                chart.render();
+            })
+            .catch(error => console.error('Error fetching data:', error.message));
+    };
 </script>

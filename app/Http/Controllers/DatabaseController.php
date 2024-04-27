@@ -18,11 +18,12 @@ class DatabaseController extends Controller
     {
         try {
             // Run the raw SQL query on the specified database connection
-            $result = $this->runQueryOnConnection("SELECT * from tbl_markets_invests
-            ", $this->dbConnection);
+            $result = DB::connection('pgsql')->table('tbl_actions')
+            ->select('act_date', 'act_ccy_receiv')
+            ->get();
 
             // Return the results
-            return response()->json(['status' => 'success', 'result' => $result]);
+            return response()->json($result);
         } catch (\Exception $e) {
             // If an exception is thrown, handle the error
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
